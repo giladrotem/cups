@@ -1,69 +1,169 @@
-# ON-DEMAND Service (Dog Care / Baby and Elder Care / Health Care / Worker and Assistant)
+# Design studio one page template - ARCHIVED
 
-Agriya ON-DEMAND Service is an open source booking solution for your business. It deals with one's day-to-day needs, it truly has tremendous business opportunities. The sole concept of an on-demand service booking platform is to organize all possible online services, while facilitating users as well as service providers by offering what they are looking for. It is written in AngularJS with REST API for high performance in mind.
+Flat and responsive website template, designed by [cssauthor](http://www.cssauthor.com/) and coded by [Maxim Orlov](https://github.com/orlovmax). 
 
-> This is project is part of Agriya Open Source efforts. ON-DEMAND Service Booking Solution was originally a paid script and was selling around 10000 Euros. It is now released under dual license ([OSL 3.0](https://www.agriya.com/resources) & [Commercial](https://www.agriya.com/solutions/service-booking-solution)) for open source community benefits.
+Demo: [http://website-templates.github.io/design-studio_one-page-template](http://website-templates.github.io/design-studio_one-page-template/)
+
+![Mockup demo](screenshots/pic.jpg)
+Product mockup created with [http://frame.lab25.co.uk/](http://frame.lab25.co.uk/)
+
+## Contents
+* [Folder structure](#folder-and-file-structure)
+* [Requirements](#requirements)
+	- [Editorconfig](#editorconfig)
+* [Site configuration](#site-configuration)
+* [Tasks](#tasks)
+	- [Start](#start)
+	- [Dev](#dev)
+	- [Build](#build)
+	- [Rebuild](#rebuild)
+	- [Server](#server)
+* [Live reload](#live-reload)
+* [License](#license)
+
+## Folder and file structure
+```
+./
+├── .editorconfig
+├── bower.json
+├── README.md
+├── automation.sh
+|
+├── gulp_tasks/                                * gulp tasks
+|   ├── config/                                * gulp tasks config
+│   |   ├── paths.js
+│   |   ├── settings.js
+│   |   └── aliases.js
+│   |
+|   └── task.js
+│
+├── gulpfile.js
+├── package.json
+|
+├── screenshots/                               * responsive test screenshots
+|
+├── dev/                                       * site source
+│   ├── images/                                * image sources
+|   │
+│   ├── pug/                                   * templates
+|   |   ├── blocks/                            * blocks library
+|   │   |   └── block.pug
+|   │   ├── helpers/                           * helper mixins
+|   │   ├── vendor/                            * third-party code
+|   │   ├── layouts/                           * page layouts
+|   │   └── pages/                             * main pages templates
+|   │
+│   ├── js/                                    * compiled and source js
+|   |   ├── vendor/                            * vendor scripts library
+|   |   ├── lib/                               * site scripts library
+|   │   ├── head.js                            * head scripts
+|   │   └── body.js                            * vendor scripts
+|   │
+|   ├── sass/                                  * sass preprocessor styles
+|   |   ├── blocks/                            * blocks library
+|   │   |   └── block.sass
+|   │   ├── helpers/                           * mixins and vars
+|   │   ├── vendor/                            * third-party code
+|   │   ├── custom.sass
+|   │   ├── noscript.sass
+|   │   └── screen.sass
+|   │
+│   ├── helpers/                               * helper files
+|   |   ├── favicon.ico
+|   |   └── .htaccess
+|   │
+│   ├── fonts/                                 * font sources
+|   │
+│   └── data/                                  * configs and data for templates
+│
+└── build/                                     * built source
+    ├── index.html
+    ├── page.html
+    |
+    └── static/                                * static assets
+        ├── css/                               * minified styles
+        |
+        ├── images/                            * minified images
+        │
+        ├── js/                                * minified assembled js
+        |
+        └── fonts/                             * @font-face-ready webfonts
+
+```
+
+## Requirements:
+- [Node.js](http://nodejs.org/)
+- Build sytem: [Gulp](http://gulpjs.com/)
+- Optionally: [Editorconfig](http://editorconfig.org/)
+
+#### Editorconfig
+This project have .editorconfig file at the root that used by your code editor with editorconfig plugin. It describes codestyle like indent style, trailing whitespaces etc. See more details [here](http://editorconfig.org/)
+
+## Site configuration
+This boilerplate use Pug templates with external data configs. 
+Main settings can be found in `dev/data/config.json` file. And they're available for usage in templates with `config.key-name`
+
+## Tasks
+Here comes groups of gulp tasks with some explanations
+
+#### Start 
+Install bower dependencies and place them to dev folders.
+Gulp: `gulp start`
+
+* Install bower components
+* Copy bower components to dev folder
+* Remove gitkeep files
+
+#### Dev
+Dev task with static server.
+Gulp: `gulp dev`
+
+* Concatenate javascripts
+* Compile Sass stylesheets
+* Add vendor prefixes in css
+* Combine media queries in css files
+* Compile Pug templates
+* Sync helpers and other assets
+* Sync images
+* Run BrowserSync static server with live reload using 
+* Watch for changes and run dev task
 
 
-## Screenshot
+#### Build 
+Build task.
+Gulp: `gulp build`
 
-![ondemandservice_banner](https://user-images.githubusercontent.com/4700341/49938993-8965cb00-ff01-11e8-8d36-43f8a977f4d6.png)
-
-## Demo / Download
-
-https://www.agriya.com/solutions/service-booking-solution
-
-## Support
-
-ON-DEMAND Service Booking Solution is an open source project. Full commercial support (commercial license, customization, training, etc) are available through [ON-DEMAND Service Booking Solution support](https://www.agriya.com/solutions/service-booking-solution)
-
-Theming partner [CSSilize for design and HTML conversions](http://cssilize.com/)
-
-## Use cases of ON-DEMAND Service Booking Solution
-
-* Dog Care
-* Baby And Elder Care
-* Worker And Assistant
-* Health Care And Wellness
+* Minify images
+* Minify javascript files
+* Minify stylesheets
+* Minify html
+* Run BrowserSync static server 
 
 
-## Getting Started
+#### Rebuild 
+Regenerate and build project by running all tasks.
+Gulp: `gulp rebuild`
 
-### Prerequisites
+* Concatenate javascripts
+* Compile Sass stylesheets
+* Add vendor prefixes in css
+* Combine media queries in css files
+* Compile Pug templates
+* Sync helpers and other assets
+* Sync images
+* Minify images
+* Minify javascript files
+* Minify stylesheets
+* Minify html
 
-#### For deployment
+#### Server 
+Run server without watching for changes.
+Gulp: `gulp server`
 
-* PostgreSQL
-* PHP >= 5.5.9 with OpenSSL, PDO, Mbstring and cURL extensions
-* Nginx (preferred) or Apache
+* Run BrowserSync static server
 
-#### For building (build tools)
+## Live reload 
+This project uses BrowserSync as static server with enabled and configured live reload option.
 
-* Nodejs
-* Composer
-* Bower
-* Grunt
-
-### Setup
-
-* PHP dependencies are handled through `composer` (Refer `/server/php/Slim/`)
-* JavaScript dependencies are handled through `bower` (Refer `/client/`)
-* Needs writable permission for `/tmp/` and `/media/` folders found within project path
-* Build tasks are handled through `grunt`
-* Database schema `/sql/sns_with_empty_data.sql`
-
-### Contributing
-
-Our approach is similar to Magento. If anything is not clear, please [contact us](https://www.agriya.com/contact).
-
-All Submissions you make to ON-DEMAND Service through GitHub are subject to the following terms and conditions:
-
-* You grant Agriya a perpetual, worldwide, non-exclusive, no charge, royalty free, irrevocable license under your applicable copyrights and patents to reproduce, prepare derivative works of, display, publicly perform, sublicense and distribute any feedback, ideas, code, or other information ("Submission") you submit through GitHub.
-* Your Submission is an original work of authorship and you are the owner or are legally entitled to grant the license stated above.
-
-
-### License
-
-Copyright (c) 2014-2018 [Agriya](https://www.agriya.com/).
-
-Dual License ([OSL 3.0](https://www.agriya.com/resources) & [Commercial License](https://www.agriya.com/contact))
+## License
+[MIT](https://github.com/website-templates/design-studio_one-page-template/blob/master/LICENSE.md)
